@@ -4,11 +4,10 @@ import {
   InputLeftElement,
   InputGroup,
   Image,
-  Switch,
-  Text,
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 
+import ColorModeSwitch from "./ColorModeSwitch";
 import logo from "../assets/logo.webp";
 
 const NavBar = () => {
@@ -23,10 +22,7 @@ const NavBar = () => {
           <Input placeholder="Search games..." variant="filled"></Input>
         </InputGroup>
       </form>
-      <HStack>
-        <Switch id="theme-switch" />
-        <Text whiteSpace="nowrap">Dark Mode</Text>
-      </HStack>
+      <ColorModeSwitch />
     </HStack>
   );
 };
