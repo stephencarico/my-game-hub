@@ -19,7 +19,7 @@ const NavBar = () => {
           <InputLeftElement pointerEvents="none">
             <Search2Icon color="gray.300" />
           </InputLeftElement>
-          <Input placeholder="Search games..." variant="filled"></Input>
+          <Input placeholder="Search games..." variant="filled" />
         </InputGroup>
       </form>
       <ColorModeSwitch />
