@@ -1,7 +1,8 @@
 import "./App.css";
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
 
 import NavBar from "./components/NavBar";
+import GamesHeader from "./components/GamesHeader";
 
 function App() {
   return (
@@ -21,7 +22,11 @@ function App() {
       <Show above="lg">
         <GridItem area={"aside"} paddingX={5}></GridItem>
       </Show>
-      <GridItem area={"main"}></GridItem>
+      <GridItem area={"main"}>
+        <Box pl={2}>
+          <GamesHeader />
+        </Box>
+      </GridItem>
     </Grid>
   );
 }
