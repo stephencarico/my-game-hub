@@ -1,15 +1,21 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Grid, GridItem } from "@chakra-ui/react";
 
 import useGames from "../hooks/useGames";
+
+import GameCard from "./GameCard";
 
 const GamesGrid = () => {
   const { data } = useGames();
 
   return (
     <Box p={2}>
-      {data.map((game) => (
-        <p key={game.id}>{game.name}</p>
-      ))}
+      <Grid templateColumns="repeat(4, 1fr)" gap={4}>
+        {data.map((game) => (
+          <GridItem key={game.id}>
+            <GameCard game={game} />
+          </GridItem>
+        ))}
+      </Grid>
     </Box>
   );
 };
