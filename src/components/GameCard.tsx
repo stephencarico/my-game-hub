@@ -1,4 +1,11 @@
-import { Card, CardBody, Image, Heading, HStack } from "@chakra-ui/react";
+import {
+  Badge,
+  Card,
+  CardBody,
+  Image,
+  Heading,
+  HStack,
+} from "@chakra-ui/react";
 import { Game } from "../hooks/useGames";
 import PlatformIconList from "./PlatformIconList";
 
@@ -15,6 +22,9 @@ const GameCard = ({ game }: Props) => {
           <PlatformIconList
             platforms={game.parent_platforms.map(({ platform }) => platform)}
           />
+          <Badge colorScheme="green" fontSize="14px" borderRadius="md" px={2}>
+            {game.metacritic}
+          </Badge>
         </HStack>
         <Heading size="md">{game.name}</Heading>
       </CardBody>
