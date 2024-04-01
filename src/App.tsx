@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect } from "react";
 import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
 
 import NavBar from "./components/NavBar";
@@ -6,6 +7,10 @@ import GamesGrid from "./components/GamesGrid";
 import GamesHeader from "./components/GamesHeader";
 
 function App() {
+  useEffect(() => {
+    document.title = "My GameHub";
+  }, []);
+
   return (
     <Grid
       templateAreas={{
