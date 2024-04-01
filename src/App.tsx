@@ -1,10 +1,11 @@
 import "./App.css";
 import { useEffect } from "react";
-import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
 
 import NavBar from "./components/NavBar";
 import GamesGrid from "./components/GamesGrid";
 import GamesHeader from "./components/GamesHeader";
+import PlatformSelector from "./components/PlatformSelector";
 
 function App() {
   useEffect(() => {
@@ -31,6 +32,9 @@ function App() {
       <GridItem area={"main"}>
         <Box pl={2}>
           <GamesHeader />
+          <Flex mb={5}>
+            <PlatformSelector />
+          </Flex>
         </Box>
         <GamesGrid />
       </GridItem>
