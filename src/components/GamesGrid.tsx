@@ -1,12 +1,14 @@
-import { Box, SimpleGrid, GridItem, Text } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text } from "@chakra-ui/react";
 
 import useGames from "../hooks/useGames";
 
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
+import GameCardSkeleton from "./GameCardSkeleton";
 
 const GamesGrid = () => {
-  const { data, error } = useGames();
+  const { data, error, isLoading } = useGames();
+  const skeletons = [1, 2, 3, 4, 5, 6];
 
   if (error) return <Text>Network Error</Text>;
 
@@ -17,13 +19,17 @@ const GamesGrid = () => {
         padding="10px"
         spacing={6}
       >
-        {data.map((game) => (
-          <GridItem key={game.id}>
-            <GameCardContainer>
-              <GameCard game={game} />
-            </GameCardContainer>
-          </GridItem>
-        ))}
+        {isLoading
+          ? skeletons.map((skeleton) => (
+              <GameCardContainer key={skeleton}>
+                <GameCardSkeleton />
+              </GameCardContainer>
+            ))
+          : data.map((game) => (
+              <GameCardContainer key={game.id}>
+                <GameCard game={game} />
+              </GameCardContainer>
+            ))}
       </SimpleGrid>
     </Box>
   );
