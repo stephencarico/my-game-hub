@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, GridItem } from "@chakra-ui/react";
+import { Box, SimpleGrid, GridItem, Text } from "@chakra-ui/react";
 
 import useGames from "../hooks/useGames";
 
@@ -6,7 +6,9 @@ import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 
 const GamesGrid = () => {
-  const { data } = useGames();
+  const { data, error } = useGames();
+
+  if (error) return <Text>Network Error</Text>;
 
   return (
     <Box p={2}>
