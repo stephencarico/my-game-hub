@@ -1,13 +1,32 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
 
 import NavBar from "./components/NavBar";
-import GamesGrid from "./components/GamesGrid";
+import GameGrid from "./components/GameGrid";
 import GamesHeader from "./components/GamesHeader";
 import PlatformSelector from "./components/PlatformSelector";
+import SortSelector from "./components/SortSelector";
+import { Platform } from "./hooks/useGames";
+import { Genre } from "./hooks/useGenres";
+
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+  sortOrder: string;
+  searchText: string;
+}
 
 function App() {
+  const [sortOrder, setSortOrder] = useState("");
+
+  const gameQuery = {
+    genre: null,
+    platform: null,
+    sortOrder,
+    searchText: "",
+  };
+
   useEffect(() => {
     document.title = "My GameHub";
   }, []);
@@ -33,10 +52,16 @@ function App() {
         <Box pl={2}>
           <GamesHeader />
           <Flex mb={5}>
-            <PlatformSelector />
+            <Box mr={5}>
+              <PlatformSelector />
+            </Box>
+            <SortSelector
+              sortOrder={sortOrder}
+              onSelectSortOrder={setSortOrder}
+            />
           </Flex>
         </Box>
-        <GamesGrid />
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );

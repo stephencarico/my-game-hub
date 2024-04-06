@@ -5,9 +5,14 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
+import { GameQuery } from "../App";
 
-const GamesGrid = () => {
-  const { data, error, isLoading } = useGames();
+interface Props {
+  gameQuery: GameQuery;
+}
+
+const GamesGrid = ({ gameQuery }: Props) => {
+  const { data, error, isLoading } = useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   if (error) return <Text>Network Error</Text>;
