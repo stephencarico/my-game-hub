@@ -7,7 +7,7 @@ import GameGrid from "./components/GameGrid";
 import GamesHeader from "./components/GamesHeader";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
-import { Platform } from "./hooks/useGames";
+import { Platform } from "./hooks/usePlatforms";
 import { Genre } from "./hooks/useGenres";
 
 export interface GameQuery {
@@ -18,14 +18,7 @@ export interface GameQuery {
 }
 
 function App() {
-  const [sortOrder, setSortOrder] = useState("");
-
-  const gameQuery = {
-    genre: null,
-    platform: null,
-    sortOrder,
-    searchText: "",
-  };
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   useEffect(() => {
     document.title = "My GameHub";
@@ -53,11 +46,18 @@ function App() {
           <GamesHeader />
           <Flex mb={5}>
             <Box mr={5}>
-              <PlatformSelector />
+              <PlatformSelector
+                platform={gameQuery.platform}
+                onSelectPlatform={(platform) =>
+                  setGameQuery({ ...gameQuery, platform })
+                }
+              />
             </Box>
             <SortSelector
-              sortOrder={sortOrder}
-              onSelectSortOrder={setSortOrder}
+              sortOrder={gameQuery.sortOrder}
+              onSelectSortOrder={(sortOrder) =>
+                setGameQuery({ ...gameQuery, sortOrder })
+              }
             />
           </Flex>
         </Box>
